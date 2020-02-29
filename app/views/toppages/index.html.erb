@@ -1,8 +1,12 @@
 <!-- TOPページ -->
-<div class="jumbotron center">
-  <div class="text-center">
-    <h1>おいしいお酒紹介サイト</h1>
-    <p>おいしいお酒が飲める場所を紹介しあいませんか？<br>お気に入りのお店酒を増やして楽しくお酒を飲みましょう！</p>
-    <%= link_to '新規登録', root_path, class: 'btn btn-outline-danger btn-lg' %>
-  </div> 
-</div>
+<% if login? %>
+  <p><%= current_user.name %>ログイン中</p>
+<% else %>
+  <div class="jumbotron center">
+    <div class="text-center">
+      <h1>おいしいお酒紹介サイト</h1>
+      <p>おいしいお酒が飲める場所を紹介しあいませんか？<br>お気に入りのお店酒を増やして楽しくお酒を飲みましょう！</p>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-outline-danger btn-lg' %>
+    </div> 
+  </div>
+<% end %>

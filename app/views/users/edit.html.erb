@@ -1,0 +1,56 @@
+<!-- ユーザ編集ページ -->
+<div class="text-center mb-4">
+  <h1>ユーザ編集</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3 mb-5">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="text-center mb-3">
+        <% if @user.image? %>
+          <%= image_tag @user.image.thumb.url %>
+        <% else%>
+          <%= image_tag "/assets/acountdefault.jpg" %>
+        <% end %>
+        <%= f.file_field :image %>
+      </div>
+    
+      <div class="form-group">
+        <%= f.label :name, '名前' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :content, '自己紹介（任意）' %>
+        <%= f.text_area :content, class: 'form-control', rows: 3 %>
+      </div>      
+      
+      <div class="form-group">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :birthday, '生年月日(例:1995-05-05)' %>
+        <%= f.text_field :birthday, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password, 'パスワード（8文字以上20文字以内、英数字/ハイフン/アンダーバー）' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワード（確認）' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      
+      <div class="text-center">
+      <%= f.submit '更新', class: 'btn btn-outline-primary w-25' %>
+      <%= link_to '退会', @user, method: :delete, class: 'btn btn-outline-danger w-25', data: { confirm: '本当に退会してもよろしいでしょうか？'} %>
+      </div>
+    <% end %>
+  </div>
+</div>

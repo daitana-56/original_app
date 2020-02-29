@@ -1,0 +1,10 @@
+<!-- エラーメッセージ共通 -->
+<% if model.errors.any? %>
+  <div class="alert alert-warning" id="error-explanation">
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
