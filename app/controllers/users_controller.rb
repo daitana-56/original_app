@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
-  before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy]
-  before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_login, only: [:index, :show, :edit, :update, :destroy, :followings, :followers, :likes]
+  before_action :get_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :likes]
   
   def index
     @users = User.order(id: :desc).page(params[:page])
   end
 
   def show
+    @reviews = @user.reviews.order(id: :desc).page(params[:page])
+    counts(@user)
   end
 
   def new
@@ -50,6 +52,21 @@ class UsersController < ApplicationController
     else
       redirect_to root_url
     end
+  end
+  
+  def followings
+    @followings = @user.followings.order(id: :desc).page(params[:page])
+    counts(@user)
+  end
+  
+  def followers
+    @followers = @user.followers.order(id: :desc).page(params[:page])
+    counts(@user)
+  end
+  
+  def likes
+    @likes = @user.liking.order(id: :desc).page(params[:page])
+    counts(@user)
   end
   
   private

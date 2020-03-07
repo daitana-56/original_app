@@ -10,7 +10,7 @@
       <ul class="navbar-nav">
         <% if login? %>
           <li class="nav-item"><a href="#" class="nav-link">検索</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">お店投稿</a></li>
+          <li class="nav-item"><%= link_to 'お店投稿', new_review_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'ユーザ一覧', users_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name%>さん</a>

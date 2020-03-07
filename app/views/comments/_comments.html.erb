@@ -1,0 +1,27 @@
+<!-- コメント表示 -->
+<% if comments.any? %>
+  <ul class="list-unstyled">
+    <% comments.each do |comment| %>
+      <li class="media mb-3">
+        <% if comment.user.image? %>
+          <a href="<%= user_path(comment.user) %>"><%= image_tag comment.user.image.thumb.url, class: 'mr-2', size: 70 %></a>
+        <% else %>
+          <a href="<%= user_path(comment.user) %>"><%= image_tag "/assets/acountdefault.jpg", class: 'mr-2', size: 70 %></a>
+        <% end %>
+  
+        <div class="media-body">
+          <div>
+            <%= link_to comment.user.name, user_path(comment.user) %><span class="text-muted"> 投稿時刻:<%= comment.created_at %></span>
+          </div>
+          <div>
+            <%= comment.content %>
+          </div>
+          <% if comment.user == current_user %>
+            <%= link_to '削除', comment, method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除してよろしいですか？' } %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+    <%= paginate comments %>
+  </ul>
+<% end %>

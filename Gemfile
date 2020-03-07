@@ -57,3 +57,4 @@ gem 'kaminari'
 gem 'rails-i18n'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'pry-byebug', group: :development

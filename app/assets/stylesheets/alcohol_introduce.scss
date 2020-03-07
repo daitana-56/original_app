@@ -14,3 +14,22 @@
     margin-bottom: 30px;
   }
 }
+
+body{
+  background: image-url("back.jpg");
+  background-size: cover;
+}
+
+.card{
+  background-color: #EEEEEE	;
+}
+
+.nav-tabs .nav-link{
+  background-color: #CC9999;
+  color: #fff;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #BB0000;
+    color: #fff;
+}

@@ -1,0 +1,40 @@
+<!-- レビュー詳細ページ -->
+<div class="row mb-5">
+  <div class="col-sm-8 offset-sm-2">
+    <p>投稿ユーザ：<%= link_to @review.user.name, user_path(@review.user) %>さん</p>
+    <p class="text-center"><%= image_tag @review.image.thumb1.url, width: '100%' %></p>
+    <div class="mb-3">
+      <div class="d-inline-block">
+        <%= render 'likes/likes_button', review: @review %>
+      </div>
+      <%= link_to 'コメント', comment_review_path(@review), class: 'btn btn-outline-secondary' %>
+      <% if @review.user == current_user %>
+        <div class="d-inline-block float-sm-right">
+          <%= link_to '編集', edit_review_path(@review), class: 'btn btn-outline-secondary' %>
+          <%= link_to '削除', @review, method: :delete, class: 'btn btn-outline-danger', data: { confirm: '本当に削除してよろしいですか？' } %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="from-group">
+      <label>店名</label> 
+      <input type="text" class="form-control" value="<%= @review.shop.name %>" disabled>
+    </div>
+      
+    <div class="from-group">
+      <label>おすすめのお酒</label> 
+      <input type="text" class="form-control" value="<%= @review.recommend %>" disabled>
+    </div>
+      
+    <div class="from-group">
+      <label>ジャンル</label> 
+      <input type="text" class="form-control" value="<%= @review.genre.name %>" disabled>
+    </div>
+      
+    <div class="from-group">
+      <label>店名</label> 
+      <textarea class="form-control" disabled><%= @review.content %></textarea>
+    </div>
+  
+  </div>
+</div>

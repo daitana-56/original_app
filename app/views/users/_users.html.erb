@@ -1,0 +1,22 @@
+<!-- ユーザ表示共通 -->
+<% if users.any? %>
+  <div class="row">
+    <% users.each do |user| %>
+      <div class="col-sm-4">
+        <div class="card mb-3">
+          <% if user.image? %>
+            <a href="<%= user_path(user) %>" class="text-center"><%= image_tag user.image.thumb.url, width: '80%' %></a>
+          <% else %>
+            <a href="<%= user_path(user) %>" class="text-center"><%= image_tag "/assets/acountdefault.jpg", width: '80%' %></a>
+          <% end %>
+          <div class="card-body">
+            <div class="card-text text-center">
+              <%= link_to user.name, user, class: 'lead' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate users %>
+  </div>
+<% end %>

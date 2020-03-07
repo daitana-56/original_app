@@ -1,0 +1,19 @@
+<!-- レビュー表示共通 -->
+<% if reviews.any? %>
+  <div class="row">
+    <% reviews.each do |review| %>
+      <div class="col-sm-4">
+        <div class="card mb-3">
+          <a href="<%= review_path(review) %>" class="text-center"><%= image_tag review.image.thumb.url, width: '90%' %></a>
+          <div class="card-body">
+            <div class="card-text text-center">
+              <p>投稿時刻：<%= review.created_at %></p>
+              <p>店名：<%= review.shop.name %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate reviews %>
+  </div>
+<% end %>

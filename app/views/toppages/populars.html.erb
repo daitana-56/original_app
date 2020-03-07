@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-12 mb-5">
+    <div class="nav nav-tabs nav-justified">
+      <li class="nav-item"><a href="<%= root_path %>" class="nav-link <%= 'active' if current_page?(root_path) %>">新着順</a></li>
+      <li class="nav-item"><a href="<%= populars_toppages_path %>" class="nav-link <%= 'active' if current_page?(populars_toppages_path) %>">人気順</a></li>
+      <li class="nav-item"><a href="<%= likes_toppages_path %>" class="nav-link <%= 'active' if current_page?(likes_toppages_path) %>">お気に入り</a></li>
+    </div>
+  </div>
+</div>
+<% if @rank_reivew.any? %>
+  <div class="row">
+    <% @rank_reivew.each.with_index(1) do |review, index| %>
+      <div class="col-sm-6">
+        <div class="card mb-3">
+          <h1><%= index %>位</h1>
+          <a href="<%= review_path(review) %>" class="text-center"><%= image_tag review.image.thumb.url, width: '90%' %></a>
+          <div class="card-body">
+            <div class="card-text text-center">
+              <p>投稿時刻：<%= review.created_at %></p>
+              <p>店名：<%= review.shop.name %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

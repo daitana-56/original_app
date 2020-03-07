@@ -1,6 +1,15 @@
 <!-- TOPページ -->
 <% if login? %>
-  <p><%= current_user.name %>ログイン中</p>
+  <div class="row">
+    <div class="col-sm-12 mb-5">
+      <div class="nav nav-tabs nav-justified">
+        <li class="nav-item"><a href="<%= root_path %>" class="nav-link <%= 'active' if current_page?(root_path) %>">新着順</a></li>
+        <li class="nav-item"><a href="<%= populars_toppages_path %>" class="nav-link <%= 'active' if current_page?(populars_toppages_path) %>">人気順</a></li>
+        <li class="nav-item"><a href="<%= likes_toppages_path %>" class="nav-link <%= 'active' if current_page?(likes_toppages_path) %>">お気に入り</a></li>
+      </div>
+    </div>
+  </div>
+  <%= render 'reviews/reviews', reviews: @reviews %>
 <% else %>
   <div class="jumbotron center">
     <div class="text-center">

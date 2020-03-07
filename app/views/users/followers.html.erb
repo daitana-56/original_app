@@ -1,0 +1,23 @@
+<!-- ユーザ詳細ページ（フォロワー）-->
+<div class="text-center mb-5">
+  <h3 class="mb-4"><%= @user.name%>さん</h3>
+  <% if @user.image? %>
+    <%= image_tag @user.image.thumb.url %>
+  <% else %>
+    <%= image_tag "/assets/acountdefault.jpg" %>
+  <% end %>
+  <div class="row  m-4">
+    <div class="col-sm-6 offset-sm-3">
+      <% if @user.content? %>
+        <textarea type="text" class="form-control" rows="3" disabled><%= @user.content %></textarea> 
+      <% else %>
+        <textarea type="text" class="form-control" rows="3" disabled>コメント未登録</textarea>
+      <% end %>
+    </div>
+  </div>
+  
+  <%= render 'relationships/follow_button', user: @user %>
+</div>
+
+<%= render 'users/navtabs', user: @user %>
+<%= render 'users/users', users: @followers %>

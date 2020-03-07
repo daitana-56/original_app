@@ -9,3 +9,11 @@ ja:
         birthday: 生年月日
         password: パスワード
         password_confirmation: パスワード（確認）
+    models:
+      review: レビュー
+    attributes:
+      review:
+        image: お店の画像
+        content: コメント
+        shop_id: 店名
+    

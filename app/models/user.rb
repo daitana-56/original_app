@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   #email設定
-  before_save { self.email.downcase!}
+  before_save { self.email.downcase! }
   #image設定
   mount_uploader :image, ImageUploader
   
@@ -17,6 +17,52 @@ class User < ApplicationRecord
   #セキュリティ設定
   has_secure_password  
   
+  #review参照
+  has_many :reviews, dependent: :destroy
+  
+  #comment参照
+  has_many :comments, dependent: :destroy
+  
+  #relationship参照
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followers, through: :reverses_of_relationship, source: :user
+  
+  #like参照
+  has_many :likes, dependent: :destroy
+  has_many :liking, through: :likes, source: :review
+  
+  #フォロー/アンフォロー用メソッド
+  def follow(user)
+    unless self == user
+      self.relationships.find_or_create_by(follow_id: user.id)
+    end
+  end
+  
+  def unfollow(user)
+    relationship = self.relationships.find_by(follow_id: user.id)
+    relationship.destroy if relationship
+  end
+  
+  def following?(user)
+    self.followings.include?(user)
+  end
+  
+  #お気に入り
+  def like(review)
+    self.likes.find_or_create_by(review_id: review.id)
+  end
+  
+  def unlike(review)
+    like = self.likes.find_by(review_id: review.id)
+    like.destroy if like
+  end
+  
+  def liking?(review)
+    self.liking.include?(review)
+  end
+
   private
   
   #生年月日確認用メソッド
@@ -25,4 +71,5 @@ class User < ApplicationRecord
       errors.add(:birthday, 'は無効な日付です。')
     end
   end
+
 end
