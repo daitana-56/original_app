@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-12 mt-5">
+    <div class="nav nav-tabs nav-justified">
+      <li class="nav-item"><a href="<%= search_path %>" class="nav-link <%= 'active' if current_page?(search_path) %>">ユーザ</a></li>
+      <li class="nav-item"><a href="<%= search1_path %>" class="nav-link <%= 'active' if current_page?(search1_path) %>">店名</a></li>
+      <li class="nav-item"><a href="<%= search2_path %>" class="nav-link <%= 'active' if current_page?(search2_path) %>">ジャンル</a></li>
+    </div>
+  </div>
+  
+  <div class="col-sm-8 offset-sm-2 mt-5 mb-5">
+    <%= form_with(url: search1_path, local: true, method: :get) do |f| %>
+      <div class="input-group">
+        <%= f.text_field :search, class: 'form-control' %>
+        <%= f.submit '検索', class: 'btn btn-primary w-25' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'reviews/reviews', reviews: @reviews %>

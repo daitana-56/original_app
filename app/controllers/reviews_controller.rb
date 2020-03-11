@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   before_action :get_review, only: [:show, :edit, :update, :destroy, :comment]
   
   def show
+    @shopinfo = "https://www.google.co.jp/search?q=#{@review.shop.name}&oq=#{@review.shop.name}&ie=UTF-8"
   end
 
   def new

@@ -32,6 +32,9 @@ class UsersController < ApplicationController
 
   def update
     if @user == current_user
+      if params[:user][:password].blank?
+        params[:user].delete("password")
+      end
       if @user.update(user_params)
         flash[:success] = "アカウント設定を完了しました。"
         redirect_to @user

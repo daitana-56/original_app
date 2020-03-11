@@ -38,4 +38,9 @@ Rails.application.routes.draw do
   
   #like
   resources :likes, only: [:create, :destroy]
+  
+  #search
+  get 'search', to: 'searchs#search'
+  get 'search1', to: 'searchs#shopsearch'
+  get 'search2', to: 'searchs#genresearch'
 end
