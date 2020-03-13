@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     unless @shop
       @shop = Shop.create(name: params[:review][:name])
     end
-
+    
     @review = current_user.reviews.build(review_params)
     
     if @review.save

@@ -3,6 +3,7 @@
   <div class="col-sm-8 offset-sm-2">
     <%= render 'comments/comments', comments: @comments %>
     <%= form_with(model: @comment, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <%= hidden_field_tag :review_id, @review.id %>
       <div class="form-group">
         <%= f.text_area :content, class: 'form-control', rows: 4 %>

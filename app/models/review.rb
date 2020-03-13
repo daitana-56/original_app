@@ -9,7 +9,6 @@ class Review < ApplicationRecord
   validates :image, presence: true
   validates :content, presence: true
   validates :recommend, length: { maximum: 255 }
-  validates :shop_id, presence: true
   
   #comment参照
   has_many :comments, dependent: :destroy
